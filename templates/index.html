@@ -538,40 +538,93 @@
         }
 
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
 
         ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(0, 255, 0, 0.3);
         }
 
         ::-webkit-scrollbar-thumb {
-            background: rgba(78, 205, 196, 0.5);
-            border-radius: 10px;
+            background: rgba(0, 255, 0, 0.6);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(78, 205, 196, 0.8);
+            background: rgba(0, 255, 0, 0.9);
         }
 
         .loading {
             text-align: center;
             padding: 50px;
-            font-size: 1.5em;
-            color: #4ecdc4;
+            font-size: 1.8em;
+            color: #00ff00;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 20px #00ff00;
+            animation: loadingPulse 1.5s infinite;
+        }
+
+        @keyframes loadingPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Glitch effect for critical states */
+        .glitch {
+            animation: glitch 0.3s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Data streaming effect */
+        .data-stream {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+            pointer-events: none;
+            animation: dataFlow 2s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes dataFlow {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
         }
     </style>
 </head>
 <body>
+    <div class="data-stream"></div>
+    <div class="main-container">
     <div class="header">
-        <h1>🚀 AI Habitat Health Monitor</h1>
-        <p style="font-size: 1.1em; color: #a0a0a0; margin: 10px 0;">Mars Colony Life Support System</p>
+        <h1>◈ MARS HABITAT LIFE SUPPORT ◈</h1>
+        <div class="mission-id">MISSION ID: MHS-2025-ALPHA | SOL 1247</div>
+        <p style="font-size: 1em; color: #00ffff; margin: 10px 0; font-family: 'Orbitron', sans-serif; letter-spacing: 2px;">
+            AUTONOMOUS AI MONITORING SYSTEM v3.14
+        </p>
         <div id="systemStatus" class="status-badge status-operational">
-            🟢 ALL SYSTEMS OPERATIONAL
+            <span class="system-indicator indicator-online"></span>ALL SYSTEMS OPERATIONAL
         </div>
-        <div style="margin-top: 10px; font-size: 0.9em; color: #a0a0a0;">
-            <span id="currentTime"></span> | <span id="updateCounter">Updates: 0</span>
+        <div style="margin-top: 15px; font-size: 0.95em; color: #00ff00; font-family: 'Share Tech Mono', monospace;">
+            <span id="currentTime"></span> UTC | <span id="updateCounter">UPDATES: 0</span> | UPTIME: <span id="uptime">00:00:00</span>
+        </div>
+    </div>
+
+    <!-- Alert Ticker -->
+    <div class="alert-ticker">
+        <div class="ticker-content" id="tickerContent">
+            ◢◤ SYSTEM ONLINE ◢◤ AI MONITORING ACTIVE ◢◤ ALL SENSORS NOMINAL ◢◤ PREDICTIVE ANALYTICS ENGAGED ◢◤ LIFE SUPPORT STABLE ◢◤
         </div>
     </div>
 
