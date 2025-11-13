@@ -1178,13 +1178,14 @@
             }
         }
 
-        // Update clock
+        // Update clock with UTC time
         function updateClock() {
             const now = new Date();
-            document.getElementById('currentTime').textContent = now.toLocaleString();
+            const utcString = now.toISOString().replace('T', ' ').substring(0, 19);
+            document.getElementById('currentTime').textContent = utcString;
         }
 
-        // Initialize
+        // Initialize and start
         initCharts();
         updateCurrentData();
         updateHistory();
@@ -1192,14 +1193,16 @@
         updateStats();
         updatePredictions();
         updateClock();
+        updateUptime();
 
         // Set up intervals
-        setInterval(updateCurrentData, 2000);
+        setInterval(updateCurrentData, 2000);  // Every 2 seconds
         setInterval(updateHistory, 2000);
         setInterval(updateAlerts, 3000);
         setInterval(updateStats, 5000);
         setInterval(updatePredictions, 10000);
         setInterval(updateClock, 1000);
+        setInterval(updateUptime, 1000);
     </script>
 </body>
 </html>
