@@ -1158,6 +1158,13 @@
         async function updatePredictions() {
             try {
                 const response = await fetch('/api/predictions');
+                if (!response.ok) {
+                    // Not enough data yet, show initializing message
+                    document.getElementById('failureProb').textContent = '- -';
+                    document.getElementById('timeToFailure').textContent = 'Initializing...';
+                    return;
+                }
+                
                 const data = await response.json();
 
                 const failureProb = data.failure_probability;
@@ -1175,6 +1182,8 @@
                 document.getElementById('timeToFailure').textContent = data.estimated_time_to_failure;
             } catch (error) {
                 console.error('Error fetching predictions:', error);
+                document.getElementById('failureProb').textContent = '- -';
+                document.getElementById('timeToFailure').textContent = 'Initializing...';
             }
         }
 
