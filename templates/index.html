@@ -316,51 +316,85 @@
         }
 
         .metric-label {
-            color: #00ff00;
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #cbd5e1;
+            font-size: 0.825em;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .metric-change {
+            font-size: 0.75em;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-left: auto;
+        }
+
+        .metric-change.positive {
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.15);
+        }
+
+        .metric-change.negative {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.15);
         }
 
         .system-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8em;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .system-indicator::before {
+            content: '';
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
-            margin-right: 8px;
+            background: currentColor;
             animation: indicatorPulse 2s infinite;
         }
 
         @keyframes indicatorPulse {
-            0%, 100% { box-shadow: 0 0 5px currentColor; }
-            50% { box-shadow: 0 0 15px currentColor, 0 0 25px currentColor; }
-        }
-
-        .indicator-online {
-            background: #00ff00;
-            box-shadow: 0 0 10px #00ff00;
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
         }
 
         .indicator-warning {
-            background: #ffa500;
-            box-shadow: 0 0 10px #ffa500;
+            background: rgba(251, 146, 60, 0.15);
+            color: #fb923c;
+            border-color: rgba(251, 146, 60, 0.3);
         }
 
         .indicator-critical {
-            background: #ff0000;
-            box-shadow: 0 0 10px #ff0000;
-            animation: criticalIndicator 0.5s infinite;
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .indicator-critical::before {
+            animation: criticalIndicator 0.6s infinite;
         }
 
         @keyframes criticalIndicator {
             0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0.3; }
+            50%, 100% { opacity: 0.2; }
         }
 
+        /* Medical-grade Health Index Display */
         .health-index {
             position: relative;
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             margin: 20px auto;
         }
 
@@ -371,86 +405,105 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3em;
-            font-weight: bold;
             position: relative;
-            background: conic-gradient(#00ff00 var(--health-percent), rgba(255,0,0,0.3) var(--health-percent));
+            background: conic-gradient(
+                from 0deg,
+                #10b981 0deg,
+                #10b981 calc(var(--health-percent) * 3.6deg),
+                rgba(100, 116, 139, 0.2) calc(var(--health-percent) * 3.6deg),
+                rgba(100, 116, 139, 0.2) 360deg
+            );
             box-shadow: 
-                0 0 20px rgba(0, 255, 0, 0.5),
-                inset 0 0 20px rgba(0, 255, 0, 0.3);
-            animation: healthRotate 10s linear infinite;
-        }
-
-        @keyframes healthRotate {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                inset 0 0 20px rgba(16, 185, 129, 0.2);
         }
 
         .health-inner {
-            width: 160px;
-            height: 160px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.95);
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.8), rgba(30, 64, 175, 0.8));
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            border: 2px solid #00ff00;
-            box-shadow: 
-                0 0 20px rgba(0, 255, 0, 0.5),
-                inset 0 0 20px rgba(0, 255, 0, 0.2);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .health-inner #healthValue {
-            font-family: 'Orbitron', sans-serif;
-            color: #00ff00;
-            text-shadow: 0 0 20px #00ff00;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -1px;
         }
 
         .health-inner span {
-            font-size: 0.3em;
-            color: #00ffff;
-            letter-spacing: 2px;
+            font-size: 0.7em;
+            color: #94a3b8;
+            font-weight: 500;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
+        /* Medical Chart Containers */
         .chart-container {
             position: relative;
-            height: 250px;
+            height: 280px;
             margin-top: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(0, 255, 0, 0.3);
-            padding: 10px;
-            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 16px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
         }
 
         .large-chart {
             grid-column: 1 / -1;
         }
 
+        /* Clinical Alert Display */
         .alerts-container {
-            max-height: 400px;
+            max-height: 450px;
             overflow-y: auto;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            border: 1px solid rgba(0, 255, 0, 0.3);
-            border-radius: 5px;
+            padding: 4px;
+        }
+
+        .alerts-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .alerts-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .alerts-container::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 3px;
         }
 
         .alert-item {
-            background: rgba(0, 0, 0, 0.9);
-            border-left: 4px solid;
-            padding: 15px;
-            margin-bottom: 12px;
-            border-radius: 0;
-            animation: alertSlideIn 0.5s;
-            font-family: 'Share Tech Mono', monospace;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            animation: alertSlideIn 0.4s ease-out;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .alert-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(4px);
         }
 
         @keyframes alertSlideIn {
             from {
                 opacity: 0;
-                transform: translateX(-30px);
+                transform: translateX(-20px);
             }
             to {
                 opacity: 1;
@@ -458,58 +511,79 @@
             }
         }
 
+        .alert-critical {
+            border-left-color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            animation: alertBlink 1.5s infinite;
+        }
+
         .alert-high {
-            border-left-color: #ff0000;
-            color: #ff6666;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+            border-left-color: #ef4444;
+            background: rgba(239, 68, 68, 0.05);
         }
 
         .alert-medium {
-            border-left-color: #ffa500;
-            color: #ffcc66;
-            box-shadow: 0 0 15px rgba(255, 165, 0, 0.3);
+            border-left-color: #fb923c;
+            background: rgba(251, 146, 60, 0.05);
         }
 
         .alert-low {
-            border-left-color: #00ffff;
-            color: #66ffff;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-        }
-
-        .alert-critical {
-            border-left-color: #ff0000;
-            background: rgba(255, 0, 0, 0.15);
-            color: #ff0000;
-            animation: alertBlink 1s infinite;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            border-left-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.05);
         }
 
         @keyframes alertBlink {
             0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0.6; }
+            50%, 100% { opacity: 0.7; }
+        }
+
+        .alert-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .alert-type {
+            font-weight: 600;
+            font-size: 0.875em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .alert-time {
             font-size: 0.75em;
-            color: #00ff00;
-            margin-top: 8px;
-            font-family: 'Orbitron', sans-serif;
+            color: #64748b;
+            font-family: 'Roboto Mono', monospace;
         }
 
+        .alert-message {
+            color: #cbd5e1;
+            font-size: 0.875em;
+            line-height: 1.5;
+        }
+
+        /* Medical Stats Grid */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 15px;
+            gap: 12px;
+            margin-top: 16px;
         }
 
         .stat-box {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px;
-            border: 1px solid #00ff00;
-            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
             text-align: center;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            transition: all 0.3s;
+        }
+
+        .stat-box:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
         }
 
         .stat-box .value {
