@@ -1065,17 +1065,19 @@
             }
         }
 
-        // Update historical charts
+        // Update history with data points counter
         async function updateHistory() {
             try {
                 const response = await fetch('/api/history');
                 const data = await response.json();
 
+                document.getElementById('dataPoints').textContent = data.temperature.length;
+
                 const recentData = {
                     temp: data.temperature.slice(-20),
                     humidity: data.humidity.slice(-20),
                     pressure: data.pressure.slice(-20),
-                    timestamps: data.timestamps.slice(-20).map(t => new Date(t).toLocaleTimeString())
+                    timestamps: data.timestamps.slice(-20).map(t => new Date(t).toLocaleTimeString('en-US', { hour12: false, timeStyle: 'short' }))
                 };
 
                 // Update mini charts
@@ -1093,7 +1095,7 @@
 
                 // Update historical chart
                 const fullData = {
-                    timestamps: data.timestamps.map(t => new Date(t).toLocaleTimeString()),
+                    timestamps: data.timestamps.map(t => new Date(t).toLocaleTimeString('en-US', { hour12: false, timeStyle: 'short' })),
                     temp: data.temperature,
                     humidity: data.humidity,
                     pressure: data.pressure
