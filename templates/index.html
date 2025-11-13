@@ -631,42 +631,95 @@
     <div class="dashboard">
         <!-- Health Index -->
         <div class="card">
-            <h3><span class="icon">❤️</span> Habitat Health Index</h3>
+            <h3><span class="icon">◈</span> HABITAT HEALTH INDEX</h3>
             <div class="health-index">
                 <div class="health-circle" id="healthCircle">
                     <div class="health-inner">
                         <div id="healthValue">100</div>
-                        <span>HEALTH %</span>
+                        <span>INTEGRITY</span>
                     </div>
                 </div>
             </div>
+            <div class="confidence-meter" title="AI Confidence Level">
+                <div class="confidence-fill" id="healthConfidence" style="width: 95%;"></div>
+            </div>
+            <div style="text-align: center; margin-top: 10px; color: #00ff00; font-size: 0.8em;">
+                AI CONFIDENCE: <span id="healthConfidenceText">95%</span>
+            </div>
         </div>
 
-        <!-- Current Readings -->
-        <div class="card">
-            <h3><span class="icon">🌡️</span> Temperature</h3>
+        <!-- Temperature -->
+        <div class="card" id="tempCard">
+            <h3><span class="icon">🌡️</span> TEMPERATURE SENSOR</h3>
             <div class="metric-value" id="currentTemp" style="color: #ff6b6b;">--</div>
-            <div class="metric-label">°C (Optimal: 20-24°C)</div>
+            <div class="metric-label">°C | OPTIMAL: 20-24°C</div>
+            <div class="system-indicator indicator-online" style="margin: 10px 0;"></div>
+            <div style="color: #00ff00; font-size: 0.85em;">STATUS: <span id="tempStatus">NOMINAL</span></div>
             <div class="chart-container">
                 <canvas id="tempChart"></canvas>
             </div>
         </div>
 
-        <div class="card">
-            <h3><span class="icon">💧</span> Humidity</h3>
+        <!-- Humidity -->
+        <div class="card" id="humidityCard">
+            <h3><span class="icon">💧</span> HUMIDITY SENSOR</h3>
             <div class="metric-value" id="currentHumidity" style="color: #4ecdc4;">--</div>
-            <div class="metric-label">% (Optimal: 40-60%)</div>
+            <div class="metric-label">% RH | OPTIMAL: 40-60%</div>
+            <div class="system-indicator indicator-online" style="margin: 10px 0;"></div>
+            <div style="color: #00ff00; font-size: 0.85em;">STATUS: <span id="humidityStatus">NOMINAL</span></div>
             <div class="chart-container">
                 <canvas id="humidityChart"></canvas>
             </div>
         </div>
 
-        <div class="card">
-            <h3><span class="icon">📊</span> Pressure</h3>
+        <!-- Pressure -->
+        <div class="card" id="pressureCard">
+            <h3><span class="icon">📊</span> PRESSURE SENSOR</h3>
             <div class="metric-value" id="currentPressure" style="color: #45b7d1;">--</div>
-            <div class="metric-label">kPa (Optimal: 100-102 kPa)</div>
+            <div class="metric-label">kPa | OPTIMAL: 100-102 kPa</div>
+            <div class="system-indicator indicator-online" style="margin: 10px 0;"></div>
+            <div style="color: #00ff00; font-size: 0.85em;">STATUS: <span id="pressureStatus">NOMINAL</span></div>
             <div class="chart-container">
                 <canvas id="pressureChart"></canvas>
+            </div>
+        </div>
+
+        <!-- O2 Level (Simulated) -->
+        <div class="card">
+            <h3><span class="icon">🫁</span> OXYGEN LEVEL</h3>
+            <div class="metric-value" style="color: #00ff00;"><span id="o2Level">21.0</span></div>
+            <div class="metric-label">% O₂ | OPTIMAL: 19.5-23.5%</div>
+            <div class="system-indicator indicator-online" style="margin: 10px 0;"></div>
+            <div style="color: #00ff00; font-size: 0.85em;">STATUS: NOMINAL</div>
+            <div style="margin-top: 15px; padding: 10px; background: rgba(0, 255, 0, 0.1); border: 1px solid #00ff00; font-size: 0.85em;">
+                <div>SCRUBBER: ACTIVE</div>
+                <div style="margin-top: 5px;">FLOW RATE: 42.5 L/min</div>
+            </div>
+        </div>
+
+        <!-- CO2 Level (Simulated) -->
+        <div class="card">
+            <h3><span class="icon">⚗️</span> CO₂ CONCENTRATION</h3>
+            <div class="metric-value" style="color: #ffa500;"><span id="co2Level">0.04</span></div>
+            <div class="metric-label">% CO₂ | CRITICAL: >0.5%</div>
+            <div class="system-indicator indicator-online" style="margin: 10px 0;"></div>
+            <div style="color: #00ff00; font-size: 0.85em;">STATUS: NOMINAL</div>
+            <div style="margin-top: 15px; padding: 10px; background: rgba(255, 165, 0, 0.1); border: 1px solid #ffa500; font-size: 0.85em;">
+                <div>REMOVAL RATE: 98.2%</div>
+                <div style="margin-top: 5px;">NEXT SERVICE: 47 SOLS</div>
+            </div>
+        </div>
+
+        <!-- Power Status (Simulated) -->
+        <div class="card">
+            <h3><span class="icon">⚡</span> POWER SYSTEMS</h3>
+            <div class="metric-value" style="color: #ffff00;"><span id="powerLevel">87</span></div>
+            <div class="metric-label">% CHARGE | SOLAR ARRAY STATUS</div>
+            <div class="system-indicator indicator-online" style="margin: 10px 0;"></div>
+            <div style="color: #00ff00; font-size: 0.85em;">STATUS: NOMINAL</div>
+            <div style="margin-top: 15px; padding: 10px; background: rgba(255, 255, 0, 0.1); border: 1px solid #ffff00; font-size: 0.85em;">
+                <div>GENERATION: 4.2 kW</div>
+                <div style="margin-top: 5px;">CONSUMPTION: 3.8 kW</div>
             </div>
         </div>
 
