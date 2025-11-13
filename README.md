@@ -9,14 +9,16 @@
 ## 🌟 Key Features
 
 ### ✅ Real-Time Monitoring
-- **Live sensor data** tracking for Temperature, Humidity, and Pressure
+- **Live sensor data** tracking for Temperature, Humidity, Pressure, O₂, CO₂, and Power
 - Updates every 2 seconds with smooth animations
-- Beautiful, space-themed dashboard interface
+- **NASA Mission Control Interface** with authentic space-tech styling
+- Animated starfield background and glowing terminal aesthetics
 
 ### 🤖 AI-Powered Intelligence
-- **Isolation Forest Algorithm** for anomaly detection
+- **Statistical Anomaly Detection** using 2-sigma thresholds
 - **Time Series Analysis** for trend prediction
 - **Predictive Maintenance** system with failure probability calculation
+- **AI Confidence Meters** showing model accuracy (95% health, 88% predictions)
 - **Automated Alert System** with severity classification
 
 ### 📊 Advanced Analytics
