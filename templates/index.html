@@ -368,6 +368,10 @@
             position: relative;
             height: 250px;
             margin-top: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            padding: 10px;
+            border-radius: 5px;
         }
 
         .large-chart {
@@ -375,23 +379,29 @@
         }
 
         .alerts-container {
-            max-height: 300px;
+            max-height: 400px;
             overflow-y: auto;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 5px;
         }
 
         .alert-item {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.9);
             border-left: 4px solid;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            animation: slideIn 0.5s;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 0;
+            animation: alertSlideIn 0.5s;
+            font-family: 'Share Tech Mono', monospace;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
         }
 
-        @keyframes slideIn {
+        @keyframes alertSlideIn {
             from {
                 opacity: 0;
-                transform: translateX(-20px);
+                transform: translateX(-30px);
             }
             to {
                 opacity: 1;
@@ -400,26 +410,41 @@
         }
 
         .alert-high {
-            border-left-color: #e74c3c;
+            border-left-color: #ff0000;
+            color: #ff6666;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
         }
 
         .alert-medium {
-            border-left-color: #f39c12;
+            border-left-color: #ffa500;
+            color: #ffcc66;
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.3);
         }
 
         .alert-low {
-            border-left-color: #3498db;
+            border-left-color: #00ffff;
+            color: #66ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
         }
 
         .alert-critical {
-            border-left-color: #c0392b;
-            background: rgba(231, 76, 60, 0.1);
+            border-left-color: #ff0000;
+            background: rgba(255, 0, 0, 0.15);
+            color: #ff0000;
+            animation: alertBlink 1s infinite;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        @keyframes alertBlink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0.6; }
         }
 
         .alert-time {
-            font-size: 0.8em;
-            color: #a0a0a0;
-            margin-top: 5px;
+            font-size: 0.75em;
+            color: #00ff00;
+            margin-top: 8px;
+            font-family: 'Orbitron', sans-serif;
         }
 
         .stats-grid {
