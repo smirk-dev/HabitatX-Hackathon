@@ -1109,20 +1109,24 @@
             }
         }
 
-        // Update alerts
+        // Update alerts with new styling
         async function updateAlerts() {
             try {
                 const response = await fetch('/api/alerts');
                 const data = await response.json();
 
                 const container = document.getElementById('alertsContainer');
+                document.getElementById('totalAlerts').textContent = data.count;
+                
                 if (data.alerts.length === 0) {
-                    container.innerHTML = '<div style="text-align: center; padding: 20px; color: #2ecc71;">✓ No alerts - All systems normal</div>';
+                    container.innerHTML = '<div style="text-align: center; padding: 30px; color: #00ff00; font-family: Orbitron, sans-serif; font-size: 1.2em; text-shadow: 0 0 10px #00ff00;">◈ NO ALERTS - ALL SYSTEMS NOMINAL ◈</div>';
                 } else {
                     container.innerHTML = data.alerts.reverse().map(alert => `
                         <div class="alert-item alert-${alert.severity.toLowerCase()}">
-                            <div><strong>${alert.type}</strong>: ${alert.message}</div>
-                            <div class="alert-time">⏰ ${new Date(alert.timestamp).toLocaleTimeString()}</div>
+                            <div style="font-family: 'Orbitron', sans-serif; font-size: 1.1em; margin-bottom: 5px;">
+                                <strong>[${alert.type}]</strong> ${alert.message}
+                            </div>
+                            <div class="alert-time">⏱ ${new Date(alert.timestamp).toLocaleTimeString('en-US', { hour12: false })} UTC</div>
                         </div>
                     `).join('');
                 }
