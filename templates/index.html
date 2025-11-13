@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 MARS HABITAT LIFE SUPPORT | Mission Control</title>
+    <title>Mars Habitat Medical Monitoring System</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,16 +14,15 @@
         }
 
         body {
-            font-family: 'Share Tech Mono', 'Courier New', monospace;
-            background: #000000;
-            color: #00ff00;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e8eaf6;
             padding: 0;
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* Animated starfield background */
+        /* Medical grid pattern background */
         body::before {
             content: '';
             position: fixed;
@@ -31,150 +30,183 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(2px 2px at 20% 30%, white, transparent),
-                radial-gradient(2px 2px at 60% 70%, white, transparent),
-                radial-gradient(1px 1px at 50% 50%, white, transparent),
-                radial-gradient(1px 1px at 80% 10%, white, transparent),
-                radial-gradient(2px 2px at 90% 60%, white, transparent),
-                radial-gradient(1px 1px at 33% 80%, white, transparent),
-                radial-gradient(1px 1px at 70% 40%, white, transparent);
-            background-size: 200% 200%;
-            animation: starMove 60s linear infinite;
-            opacity: 0.3;
+            background-image: 
+                linear-gradient(rgba(100, 150, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 150, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
             z-index: 0;
-        }
-
-        @keyframes starMove {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 100% 100%; }
+            pointer-events: none;
         }
 
         .main-container {
             position: relative;
             z-index: 1;
+            max-width: 1600px;
+            margin: 0 auto;
             padding: 20px;
         }
 
-        /* Mission Control Header */
+        /* Professional Medical Header */
         .header {
-            text-align: center;
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.95);
-            border: 3px solid #00ff00;
-            border-radius: 0;
-            margin-bottom: 20px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            border-radius: 12px;
+            padding: 24px 32px;
+            margin-bottom: 24px;
             box-shadow: 
-                0 0 20px rgba(0, 255, 0, 0.5),
-                inset 0 0 20px rgba(0, 255, 0, 0.1);
-            position: relative;
-            overflow: hidden;
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08);
+            border-left: 6px solid #3b82f6;
         }
 
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #00ff00, transparent);
-            animation: scan 3s linear infinite;
-        }
-
-        @keyframes scan {
-            0% { left: -100%; }
-            100% { left: 100%; }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 16px;
         }
 
         .header h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3em;
-            margin-bottom: 10px;
-            color: #00ff00;
-            text-shadow: 
-                0 0 10px #00ff00,
-                0 0 20px #00ff00,
-                0 0 30px #00ff00;
-            letter-spacing: 4px;
-            animation: glow 2s ease-in-out infinite alternate;
+            font-size: 1.75em;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        @keyframes glow {
-            from { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
-            to { text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; }
+        .header h1::before {
+            content: '⚕';
+            font-size: 1.2em;
+            color: #60a5fa;
         }
 
         .mission-id {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2em;
-            color: #00ffff;
-            margin: 10px 0;
-            letter-spacing: 2px;
+            font-size: 0.95em;
+            color: #cbd5e1;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mission-id::before {
+            content: '📋';
+            font-size: 1.1em;
+        }
+
+        .system-time {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9em;
+            color: #94a3b8;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
         }
 
         .status-badge {
-            display: inline-block;
-            padding: 12px 30px;
-            border: 2px solid;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1em;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin: 15px 0;
-            animation: statusPulse 2s infinite;
-            box-shadow: 0 0 20px currentColor;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.875em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
         }
 
-        @keyframes statusPulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
+        .status-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
         }
 
         .status-operational {
-            background: rgba(0, 255, 0, 0.2);
-            color: #00ff00;
-            border-color: #00ff00;
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-operational::before {
+            background: #10b981;
+            animation: statusPulse 2s infinite;
         }
 
         .status-warning {
-            background: rgba(255, 165, 0, 0.2);
-            color: #ffa500;
-            border-color: #ffa500;
+            background: rgba(251, 146, 60, 0.15);
+            color: #fb923c;
+            border: 1px solid rgba(251, 146, 60, 0.3);
+        }
+
+        .status-warning::before {
+            background: #fb923c;
+            animation: statusPulse 2s infinite;
         }
 
         .status-critical {
-            background: rgba(255, 0, 0, 0.2);
-            color: #ff0000;
-            border-color: #ff0000;
-            animation: criticalBlink 0.5s infinite;
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .status-critical::before {
+            background: #ef4444;
+            animation: criticalBlink 0.8s infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 currentColor; }
+            50% { opacity: 0.7; box-shadow: 0 0 0 3px transparent; }
         }
 
         @keyframes criticalBlink {
             0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0.3; }
+            50%, 100% { opacity: 0.4; }
         }
 
-        /* Alert Ticker */
+        /* Alert Ticker - Medical Style */
         .alert-ticker {
-            background: rgba(0, 0, 0, 0.95);
-            border: 2px solid #00ffff;
-            padding: 10px 0;
-            margin-bottom: 20px;
+            background: rgba(30, 58, 138, 0.3);
+            border-radius: 8px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 12px 0;
+            margin-bottom: 24px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .ticker-label {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #1e3a8a;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: #60a5fa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
         }
 
         .ticker-content {
             display: inline-block;
             white-space: nowrap;
             padding-left: 100%;
-            animation: ticker 30s linear infinite;
-            color: #00ffff;
-            font-family: 'Orbitron', sans-serif;
+            animation: ticker 35s linear infinite;
+            color: #e0e7ff;
             font-size: 0.9em;
-            letter-spacing: 2px;
+            font-weight: 500;
         }
 
         @keyframes ticker {
@@ -182,21 +214,23 @@
             100% { transform: translateX(-100%); }
         }
 
+        /* Medical Dashboard Grid */
         .dashboard {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .card {
-            background: rgba(0, 20, 0, 0.95);
-            border: 2px solid #00ff00;
-            border-radius: 5px;
-            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 24px;
             box-shadow: 
-                0 0 15px rgba(0, 255, 0, 0.3),
-                inset 0 0 15px rgba(0, 255, 0, 0.05);
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
