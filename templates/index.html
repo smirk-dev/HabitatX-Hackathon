@@ -725,75 +725,127 @@
 
         <!-- Statistics -->
         <div class="card">
-            <h3><span class="icon">📈</span> Statistical Analysis</h3>
+            <h3><span class="icon">📈</span> STATISTICAL ANALYSIS</h3>
             <div class="stats-grid">
                 <div class="stat-box">
                     <div class="value" id="tempMean">--</div>
-                    <div class="label">Temp Mean</div>
+                    <div class="label">TEMP MEAN</div>
                 </div>
                 <div class="stat-box">
                     <div class="value" id="humidityMean">--</div>
-                    <div class="label">Humidity Mean</div>
+                    <div class="label">HUM MEAN</div>
                 </div>
                 <div class="stat-box">
                     <div class="value" id="pressureMean">--</div>
-                    <div class="label">Pressure Mean</div>
+                    <div class="label">PRESS MEAN</div>
                 </div>
                 <div class="stat-box">
                     <div class="value" id="tempStd">--</div>
-                    <div class="label">Temp Std Dev</div>
+                    <div class="label">TEMP σ</div>
                 </div>
                 <div class="stat-box">
                     <div class="value" id="humidityStd">--</div>
-                    <div class="label">Humidity Std</div>
+                    <div class="label">HUM σ</div>
                 </div>
                 <div class="stat-box">
                     <div class="value" id="pressureStd">--</div>
-                    <div class="label">Pressure Std</div>
+                    <div class="label">PRESS σ</div>
                 </div>
             </div>
         </div>
 
         <!-- AI Predictions -->
         <div class="card">
-            <h3><span class="icon">🤖</span> AI Failure Prediction</h3>
+            <h3><span class="icon">🤖</span> AI FAILURE PREDICTION</h3>
             <div class="prediction-box">
-                <h4>System Failure Probability</h4>
+                <h4>◈ SYSTEM FAILURE PROBABILITY ◈</h4>
                 <div class="failure-probability" id="failureProb">--</div>
-                <div style="color: #a0a0a0;">Estimated Time to Failure: <span id="timeToFailure">Calculating...</span></div>
+                <div style="color: #00ffff;">TIME TO FAILURE: <span id="timeToFailure">CALCULATING...</span></div>
+                <div class="confidence-meter" title="Prediction Confidence" style="margin-top: 15px;">
+                    <div class="confidence-fill" id="predictionConfidence" style="width: 88%;"></div>
+                </div>
+                <div style="text-align: center; margin-top: 8px; color: #00ff00; font-size: 0.85em;">
+                    MODEL CONFIDENCE: <span id="predictionConfidenceText">88%</span>
+                </div>
             </div>
-            <div style="margin-top: 15px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 5px;">
-                <div style="font-size: 0.9em; color: #a0a0a0; margin-bottom: 5px;">AI Model Status:</div>
-                <div style="color: #2ecc71;">✓ Isolation Forest Active</div>
-                <div style="color: #2ecc71;">✓ Time Series Analysis Active</div>
-                <div style="color: #2ecc71;">✓ Predictive Maintenance Active</div>
+            <div style="margin-top: 20px; padding: 15px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00ff00; border-radius: 5px;">
+                <div style="font-size: 0.9em; color: #00ffff; margin-bottom: 10px; font-family: 'Orbitron', sans-serif;">AI MODEL STATUS:</div>
+                <div class="ai-status-indicator">
+                    <span class="system-indicator indicator-online"></span>
+                    STATISTICAL ML ACTIVE
+                </div>
+                <div class="ai-status-indicator">
+                    <span class="system-indicator indicator-online"></span>
+                    TIME SERIES ANALYSIS ONLINE
+                </div>
+                <div class="ai-status-indicator">
+                    <span class="system-indicator indicator-online"></span>
+                    PREDICTIVE MAINTENANCE ENGAGED
+                </div>
+                <div class="ai-status-indicator">
+                    <span class="system-indicator indicator-online"></span>
+                    ANOMALY DETECTION: 2σ THRESHOLD
+                </div>
             </div>
         </div>
 
         <!-- Alerts -->
         <div class="card large-chart">
-            <h3><span class="icon">🚨</span> System Alerts & Notifications</h3>
+            <h3><span class="icon">🚨</span> SYSTEM ALERTS & NOTIFICATIONS</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 10px; background: rgba(0, 255, 0, 0.1); border: 1px solid #00ff00;">
+                <span style="font-family: 'Orbitron', sans-serif; font-size: 0.9em; color: #00ff00;">ALERT FEED: LIVE</span>
+                <span style="color: #00ffff; font-size: 0.85em;">TOTAL ALERTS: <span id="totalAlerts">0</span></span>
+            </div>
             <div class="alerts-container" id="alertsContainer">
-                <div style="text-align: center; padding: 20px; color: #a0a0a0;">
-                    Loading alerts...
+                <div class="loading">
+                    ◢◤ INITIALIZING ALERT SYSTEM ◢◤
                 </div>
             </div>
         </div>
 
         <!-- Historical Data Chart -->
         <div class="card large-chart">
-            <h3><span class="icon">📉</span> Historical Sensor Data</h3>
+            <h3><span class="icon">📉</span> HISTORICAL SENSOR DATA</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding: 10px; background: rgba(0, 255, 255, 0.1); border: 1px solid #00ffff; font-size: 0.85em;">
+                <span style="color: #00ffff; font-family: 'Orbitron', sans-serif;">DATA POINTS: <span id="dataPoints">0</span></span>
+                <span style="color: #00ff00;">SAMPLING RATE: 0.5 Hz</span>
+                <span style="color: #ffa500;">BUFFER: 100 READINGS</span>
+            </div>
             <div class="chart-container" style="height: 350px;">
                 <canvas id="historicalChart"></canvas>
             </div>
         </div>
     </div>
+    </div> <!-- End main-container -->
 
     <script>
         let updateCount = 0;
         let charts = {};
+        let startTime = Date.now();
 
-        // Initialize charts
+        // Simulate additional metrics
+        function simulateO2Level() {
+            return (20.8 + Math.random() * 0.4).toFixed(1);
+        }
+
+        function simulateCO2Level() {
+            return (0.03 + Math.random() * 0.02).toFixed(2);
+        }
+
+        function simulatePowerLevel() {
+            return Math.floor(85 + Math.random() * 10);
+        }
+
+        // Update uptime
+        function updateUptime() {
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const hours = Math.floor(elapsed / 3600).toString().padStart(2, '0');
+            const minutes = Math.floor((elapsed % 3600) / 60).toString().padStart(2, '0');
+            const seconds = (elapsed % 60).toString().padStart(2, '0');
+            document.getElementById('uptime').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        // Initialize charts with dark theme
         function initCharts() {
             const chartConfig = {
                 type: 'line',
@@ -804,19 +856,23 @@
                         legend: { display: false }
                     },
                     scales: {
-                        x: { display: false },
+                        x: { 
+                            display: false,
+                            grid: { color: 'rgba(0, 255, 0, 0.1)' }
+                        },
                         y: { 
-                            ticks: { color: '#a0a0a0' },
-                            grid: { color: 'rgba(255,255,255,0.1)' }
+                            ticks: { color: '#00ff00', font: { family: 'Share Tech Mono' } },
+                            grid: { color: 'rgba(0, 255, 0, 0.2)' }
                         }
                     },
                     elements: {
-                        line: { tension: 0.4 },
-                        point: { radius: 0 }
+                        line: { tension: 0.4, borderWidth: 2 },
+                        point: { radius: 0, hitRadius: 10 }
                     }
                 }
             };
 
+            // Temperature chart
             charts.temp = new Chart(document.getElementById('tempChart'), {
                 ...chartConfig,
                 data: {
@@ -824,12 +880,13 @@
                     datasets: [{
                         data: [],
                         borderColor: '#ff6b6b',
-                        backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                        backgroundColor: 'rgba(255, 107, 107, 0.2)',
                         fill: true
                     }]
                 }
             });
 
+            // Humidity chart
             charts.humidity = new Chart(document.getElementById('humidityChart'), {
                 ...chartConfig,
                 data: {
@@ -837,12 +894,13 @@
                     datasets: [{
                         data: [],
                         borderColor: '#4ecdc4',
-                        backgroundColor: 'rgba(78, 205, 196, 0.1)',
+                        backgroundColor: 'rgba(78, 205, 196, 0.2)',
                         fill: true
                     }]
                 }
             });
 
+            // Pressure chart
             charts.pressure = new Chart(document.getElementById('pressureChart'), {
                 ...chartConfig,
                 data: {
@@ -850,37 +908,41 @@
                     datasets: [{
                         data: [],
                         borderColor: '#45b7d1',
-                        backgroundColor: 'rgba(69, 183, 209, 0.1)',
+                        backgroundColor: 'rgba(69, 183, 209, 0.2)',
                         fill: true
                     }]
                 }
             });
 
+            // Historical chart with dark theme
             charts.historical = new Chart(document.getElementById('historicalChart'), {
                 type: 'line',
                 data: {
                     labels: [],
                     datasets: [
                         {
-                            label: 'Temperature',
+                            label: 'TEMPERATURE',
                             data: [],
                             borderColor: '#ff6b6b',
                             backgroundColor: 'rgba(255, 107, 107, 0.1)',
-                            yAxisID: 'y'
+                            yAxisID: 'y',
+                            borderWidth: 2
                         },
                         {
-                            label: 'Humidity',
+                            label: 'HUMIDITY',
                             data: [],
                             borderColor: '#4ecdc4',
                             backgroundColor: 'rgba(78, 205, 196, 0.1)',
-                            yAxisID: 'y1'
+                            yAxisID: 'y1',
+                            borderWidth: 2
                         },
                         {
-                            label: 'Pressure',
+                            label: 'PRESSURE',
                             data: [],
                             borderColor: '#45b7d1',
                             backgroundColor: 'rgba(69, 183, 209, 0.1)',
-                            yAxisID: 'y2'
+                            yAxisID: 'y2',
+                            borderWidth: 2
                         }
                     ]
                 },
@@ -890,30 +952,33 @@
                     plugins: {
                         legend: {
                             display: true,
-                            labels: { color: '#ffffff' }
+                            labels: { 
+                                color: '#00ff00',
+                                font: { family: 'Orbitron', size: 12 }
+                            }
                         }
                     },
                     scales: {
                         x: {
-                            ticks: { color: '#a0a0a0', maxTicksLimit: 10 },
-                            grid: { color: 'rgba(255,255,255,0.1)' }
+                            ticks: { color: '#00ff00', maxTicksLimit: 10, font: { family: 'Share Tech Mono' } },
+                            grid: { color: 'rgba(0, 255, 0, 0.2)' }
                         },
                         y: {
                             type: 'linear',
                             position: 'left',
-                            ticks: { color: '#ff6b6b' },
-                            grid: { color: 'rgba(255,255,255,0.1)' }
+                            ticks: { color: '#ff6b6b', font: { family: 'Share Tech Mono' } },
+                            grid: { color: 'rgba(255, 107, 107, 0.2)' }
                         },
                         y1: {
                             type: 'linear',
                             position: 'right',
-                            ticks: { color: '#4ecdc4' },
+                            ticks: { color: '#4ecdc4', font: { family: 'Share Tech Mono' } },
                             grid: { display: false }
                         },
                         y2: {
                             type: 'linear',
                             position: 'right',
-                            ticks: { color: '#45b7d1' },
+                            ticks: { color: '#45b7d1', font: { family: 'Share Tech Mono' } },
                             grid: { display: false }
                         }
                     },
