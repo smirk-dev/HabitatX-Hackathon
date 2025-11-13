@@ -69,7 +69,7 @@
 
         .header h1 {
             font-size: 1.75em;
-            font-weight: 600;
+            font-weight: 500;
             color: #87ceeb;
             letter-spacing: -0.5px;
             display: flex;
@@ -114,7 +114,7 @@
             padding: 8px 20px;
             border-radius: 20px;
             font-size: 0.875em;
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: 0.5px;
             text-transform: uppercase;
             transition: all 0.3s;
@@ -173,9 +173,9 @@
 
         /* Alert Ticker - Medical Style */
         .alert-ticker {
-            background: rgba(30, 58, 138, 0.3);
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 8px;
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            border: 1px solid rgba(135, 206, 250, 0.3);
             padding: 12px 0;
             margin-bottom: 24px;
             overflow: hidden;
@@ -188,15 +188,16 @@
             left: 20px;
             top: 50%;
             transform: translateY(-50%);
-            background: #1e3a8a;
+            background: #000000;
             padding: 4px 12px;
             border-radius: 4px;
             font-size: 0.75em;
-            font-weight: 600;
-            color: #60a5fa;
+            font-weight: 500;
+            color: #87ceeb;
             text-transform: uppercase;
             letter-spacing: 1px;
             z-index: 2;
+            border: 1px solid #87ceeb;
         }
 
         .ticker-content {
@@ -204,9 +205,9 @@
             white-space: nowrap;
             padding-left: 100%;
             animation: ticker 35s linear infinite;
-            color: #e0e7ff;
+            color: #cbd5e1;
             font-size: 0.9em;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         @keyframes ticker {
@@ -243,16 +244,16 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: linear-gradient(180deg, #3b82f6, #60a5fa);
+            background: linear-gradient(180deg, #87ceeb, #5fb9e0);
             opacity: 0.8;
         }
 
         .card:hover {
             transform: translateY(-2px);
             box-shadow: 
-                0 8px 16px rgba(0, 0, 0, 0.15),
-                0 2px 4px rgba(0, 0, 0, 0.1);
-            border-color: rgba(59, 130, 246, 0.4);
+                0 8px 16px rgba(0, 0, 0, 0.3),
+                0 2px 4px rgba(0, 0, 0, 0.2);
+            border-color: rgba(135, 206, 250, 0.4);
         }
 
         .card.normal {
@@ -277,7 +278,7 @@
 
         .card h3 {
             font-size: 0.875em;
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 16px;
             color: #94a3b8;
             display: flex;
@@ -295,13 +296,13 @@
             align-items: center;
             justify-content: center;
             font-size: 1.2em;
-            background: rgba(59, 130, 246, 0.15);
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            background: rgba(135, 206, 250, 0.15);
+            border: 1px solid rgba(135, 206, 250, 0.3);
         }
 
         .metric-value {
             font-size: 2.75em;
-            font-weight: 700;
+            font-weight: 500;
             margin: 20px 0 12px 0;
             color: #ffffff;
             letter-spacing: -1px;
@@ -326,7 +327,7 @@
 
         .metric-change {
             font-size: 0.75em;
-            font-weight: 600;
+            font-weight: 500;
             padding: 4px 8px;
             border-radius: 4px;
             margin-left: auto;
@@ -422,18 +423,18 @@
             width: 140px;
             height: 140px;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.8), rgba(30, 64, 175, 0.8));
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(26, 26, 26, 0.8));
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            border: 2px solid rgba(59, 130, 246, 0.3);
+            border: 2px solid rgba(135, 206, 250, 0.3);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .health-inner #healthValue {
             font-size: 2.5em;
-            font-weight: 700;
+            font-weight: 500;
             color: #ffffff;
             letter-spacing: -1px;
         }
@@ -480,7 +481,7 @@
         }
 
         .alerts-container::-webkit-scrollbar-thumb {
-            background: rgba(59, 130, 246, 0.5);
+            background: rgba(135, 206, 250, 0.5);
             border-radius: 3px;
         }
 
@@ -528,8 +529,8 @@
         }
 
         .alert-low {
-            border-left-color: #3b82f6;
-            background: rgba(59, 130, 246, 0.05);
+            border-left-color: #87ceeb;
+            background: rgba(135, 206, 250, 0.05);
         }
 
         @keyframes alertBlink {
@@ -545,7 +546,7 @@
         }
 
         .alert-type {
-            font-weight: 600;
+            font-weight: 500;
             font-size: 0.875em;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -582,12 +583,12 @@
 
         .stat-box:hover {
             background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(59, 130, 246, 0.3);
+            border-color: rgba(135, 206, 250, 0.3);
         }
 
         .stat-box .value {
             font-size: 1.75em;
-            font-weight: 700;
+            font-weight: 500;
             color: #ffffff;
             margin-bottom: 6px;
         }
@@ -602,8 +603,8 @@
 
         /* Medical Prediction Display */
         .prediction-box {
-            background: linear-gradient(135deg, rgba(30, 58, 138, 0.3), rgba(30, 64, 175, 0.3));
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(26, 26, 26, 0.3));
+            border: 1px solid rgba(135, 206, 250, 0.3);
             padding: 20px;
             border-radius: 12px;
             margin-top: 16px;
@@ -611,17 +612,17 @@
         }
 
         .prediction-box h4 {
-            color: #93c5fd;
+            color: #87CEEB;
             margin-bottom: 16px;
             font-size: 0.875em;
-            font-weight: 600;
+            font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .failure-probability {
             font-size: 2.5em;
-            font-weight: 700;
+            font-weight: 500;
             margin: 12px 0;
             color: #ffffff;
             letter-spacing: -1px;
@@ -740,10 +741,10 @@
         <div style="display: flex; gap: 12px; align-items: center; margin-top: 12px; flex-wrap: wrap;">
             <div id="systemStatus" class="status-badge status-operational">System Operational</div>
             <span style="color: #cbd5e1; font-size: 0.85em;">
-                Updates: <span id="updateCounter" style="font-family: 'Roboto Mono', monospace; color: #60a5fa;">0</span>
+                Updates: <span id="updateCounter" style="font-family: 'Roboto Mono', monospace; color: #87ceeb;">0</span>
             </span>
             <span style="color: #cbd5e1; font-size: 0.85em;">
-                Uptime: <span id="uptime" style="font-family: 'Roboto Mono', monospace; color: #60a5fa;">00:00:00</span>
+                Uptime: <span id="uptime" style="font-family: 'Roboto Mono', monospace; color: #87ceeb;">00:00:00</span>
             </span>
         </div>
     </div>
