@@ -728,56 +728,67 @@
     </style>
 </head>
 <body>
-    <div class="data-stream"></div>
     <div class="main-container">
     <div class="header">
-        <h1>◈ MARS HABITAT LIFE SUPPORT ◈</h1>
-        <div class="mission-id">MISSION ID: MHS-2025-ALPHA | SOL 1247</div>
-        <p style="font-size: 1em; color: #00ffff; margin: 10px 0; font-family: 'Orbitron', sans-serif; letter-spacing: 2px;">
-            AUTONOMOUS AI MONITORING SYSTEM v3.14
-        </p>
-        <div id="systemStatus" class="status-badge status-operational">
-            <span class="system-indicator indicator-online"></span>ALL SYSTEMS OPERATIONAL
+        <div class="header-top">
+            <h1>Mars Habitat Medical Monitoring System</h1>
+            <div class="system-time" id="currentTime"></div>
         </div>
-        <div style="margin-top: 15px; font-size: 0.95em; color: #00ff00; font-family: 'Share Tech Mono', monospace;">
-            <span id="currentTime"></span> UTC | <span id="updateCounter">UPDATES: 0</span> | UPTIME: <span id="uptime">00:00:00</span>
+        <div class="mission-id">
+            Mission ID: MHS-2025-α | Sol 1247 | Habitat Zone-3
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center; margin-top: 12px; flex-wrap: wrap;">
+            <div id="systemStatus" class="status-badge status-operational">System Operational</div>
+            <span style="color: #cbd5e1; font-size: 0.85em;">
+                Updates: <span id="updateCounter" style="font-family: 'Roboto Mono', monospace; color: #60a5fa;">0</span>
+            </span>
+            <span style="color: #cbd5e1; font-size: 0.85em;">
+                Uptime: <span id="uptime" style="font-family: 'Roboto Mono', monospace; color: #60a5fa;">00:00:00</span>
+            </span>
         </div>
     </div>
 
-    <!-- Alert Ticker -->
+    <!-- Medical Alert Ticker -->
     <div class="alert-ticker">
+        <div class="ticker-label">ALERTS</div>
         <div class="ticker-content" id="tickerContent">
-            ◢◤ SYSTEM ONLINE ◢◤ AI MONITORING ACTIVE ◢◤ ALL SENSORS NOMINAL ◢◤ PREDICTIVE ANALYTICS ENGAGED ◢◤ LIFE SUPPORT STABLE ◢◤
+            System Initialized • All Vital Signs Monitoring Active • Environmental Controls Nominal • AI Predictive Analysis Online • Medical Data Streaming Active •
         </div>
     </div>
 
     <div class="dashboard">
         <!-- Health Index -->
         <div class="card">
-            <h3><span class="icon">◈</span> HABITAT HEALTH INDEX</h3>
+            <h3>
+                <span class="card-icon">❤️</span>
+                Habitat Health Index
+            </h3>
             <div class="health-index">
                 <div class="health-circle" id="healthCircle">
                     <div class="health-inner">
                         <div id="healthValue">100</div>
-                        <span>INTEGRITY</span>
+                        <span>Overall Health</span>
                     </div>
                 </div>
             </div>
-            <div class="confidence-meter" title="AI Confidence Level">
-                <div class="confidence-fill" id="healthConfidence" style="width: 95%;"></div>
-            </div>
-            <div style="text-align: center; margin-top: 10px; color: #00ff00; font-size: 0.8em;">
-                AI CONFIDENCE: <span id="healthConfidenceText">95%</span>
+            <div class="system-indicator" id="healthStatusIndicator">
+                Optimal Condition
             </div>
         </div>
 
         <!-- Temperature -->
         <div class="card" id="tempCard">
-            <h3><span class="icon">🌡️</span> TEMPERATURE SENSOR</h3>
-            <div class="metric-value" id="currentTemp" style="color: #ff6b6b;">--</div>
-            <div class="metric-label">°C | OPTIMAL: 20-24°C</div>
-            <div class="system-indicator indicator-online" style="margin: 10px 0;"></div>
-            <div style="color: #00ff00; font-size: 0.85em;">STATUS: <span id="tempStatus">NOMINAL</span></div>
+            <h3>
+                <span class="card-icon">🌡️</span>
+                Temperature
+                <span class="system-indicator" id="tempIndicator">Normal</span>
+            </h3>
+            <div class="metric-value" id="currentTemp">
+                --<span class="metric-unit">°C</span>
+            </div>
+            <div class="metric-label">
+                Reference Range: 20-24°C
+            </div>
             <div class="chart-container">
                 <canvas id="tempChart"></canvas>
             </div>
