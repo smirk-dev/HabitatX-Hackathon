@@ -990,37 +990,78 @@
             });
         }
 
-        // Update current data
+        // Update current data with status indicators
         async function updateCurrentData() {
             try {
                 const response = await fetch('/api/current');
                 const data = await response.json();
 
-                document.getElementById('currentTemp').textContent = data.temperature.toFixed(1);
-                document.getElementById('currentHumidity').textContent = data.humidity.toFixed(1);
-                document.getElementById('currentPressure').textContent = data.pressure.toFixed(1);
+                const temp = data.temperature;
+                const humidity = data.humidity;
+                const pressure = data.pressure;
 
+                // Update values
+                document.getElementById('currentTemp').textContent = temp.toFixed(1);
+                document.getElementById('currentHumidity').textContent = humidity.toFixed(1);
+                document.getElementById('currentPressure').textContent = pressure.toFixed(1);
+
+                // Update simulated metrics
+                document.getElementById('o2Level').textContent = simulateO2Level();
+                document.getElementById('co2Level').textContent = simulateCO2Level();
+                document.getElementById('powerLevel').textContent = simulatePowerLevel();
+
+                // Update status based on thresholds
+                updateSensorStatus('temp', temp, 20, 24);
+                updateSensorStatus('humidity', humidity, 40, 60);
+                updateSensorStatus('pressure', pressure, 100, 102);
+
+                // Update health index
                 const healthValue = data.health_index;
                 document.getElementById('healthValue').textContent = healthValue.toFixed(0);
                 document.getElementById('healthCircle').style.setProperty('--health-percent', healthValue + '%');
 
                 // Update status badge
                 const statusBadge = document.getElementById('systemStatus');
+                const indicator = statusBadge.querySelector('.system-indicator');
+                
                 if (healthValue >= 80) {
                     statusBadge.className = 'status-badge status-operational';
-                    statusBadge.textContent = '🟢 ALL SYSTEMS OPERATIONAL';
+                    statusBadge.innerHTML = '<span class="system-indicator indicator-online"></span>ALL SYSTEMS OPERATIONAL';
                 } else if (healthValue >= 60) {
                     statusBadge.className = 'status-badge status-warning';
-                    statusBadge.textContent = '🟡 CAUTION: MONITOR SYSTEMS';
+                    statusBadge.innerHTML = '<span class="system-indicator indicator-warning"></span>CAUTION: MONITOR SYSTEMS';
                 } else {
                     statusBadge.className = 'status-badge status-critical';
-                    statusBadge.textContent = '🔴 CRITICAL: IMMEDIATE ACTION REQUIRED';
+                    statusBadge.innerHTML = '<span class="system-indicator indicator-critical"></span>CRITICAL: IMMEDIATE ACTION';
+                    statusBadge.classList.add('glitch');
                 }
 
                 updateCount++;
-                document.getElementById('updateCounter').textContent = `Updates: ${updateCount}`;
+                document.getElementById('updateCounter').textContent = `UPDATES: ${updateCount}`;
             } catch (error) {
                 console.error('Error fetching current data:', error);
+            }
+        }
+
+        // Update sensor status indicators
+        function updateSensorStatus(sensor, value, min, max) {
+            const statusElem = document.getElementById(`${sensor}Status`);
+            const card = document.getElementById(`${sensor}Card`);
+            
+            if (value < min || value > max) {
+                statusElem.textContent = 'ANOMALY DETECTED';
+                statusElem.style.color = '#ff0000';
+                card.classList.add('critical');
+                card.classList.remove('warning');
+            } else if (value < min + 1 || value > max - 1) {
+                statusElem.textContent = 'WARNING';
+                statusElem.style.color = '#ffa500';
+                card.classList.add('warning');
+                card.classList.remove('critical');
+            } else {
+                statusElem.textContent = 'NOMINAL';
+                statusElem.style.color = '#00ff00';
+                card.classList.remove('critical', 'warning');
             }
         }
 
