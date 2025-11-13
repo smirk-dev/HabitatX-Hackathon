@@ -241,63 +241,78 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #00ff00, transparent);
-            animation: cardScan 4s linear infinite;
-        }
-
-        @keyframes cardScan {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #3b82f6, #60a5fa);
+            opacity: 0.8;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-2px);
             box-shadow: 
-                0 0 30px rgba(0, 255, 0, 0.6),
-                inset 0 0 20px rgba(0, 255, 0, 0.1);
-            border-color: #00ffff;
+                0 8px 16px rgba(0, 0, 0, 0.15),
+                0 2px 4px rgba(0, 0, 0, 0.1);
+            border-color: rgba(59, 130, 246, 0.4);
         }
 
-        .card.critical {
-            border-color: #ff0000;
-            box-shadow: 
-                0 0 15px rgba(255, 0, 0, 0.5),
-                inset 0 0 15px rgba(255, 0, 0, 0.1);
+        .card.normal {
+            border-left: 4px solid #10b981;
         }
 
         .card.warning {
-            border-color: #ffa500;
-            box-shadow: 
-                0 0 15px rgba(255, 165, 0, 0.5),
-                inset 0 0 15px rgba(255, 165, 0, 0.1);
+            border-left: 4px solid #fb923c;
+            background: rgba(251, 146, 60, 0.05);
+        }
+
+        .card.critical {
+            border-left: 4px solid #ef4444;
+            background: rgba(239, 68, 68, 0.05);
+            animation: cardAlert 2s infinite;
+        }
+
+        @keyframes cardAlert {
+            0%, 100% { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+            50% { box-shadow: 0 4px 6px rgba(239, 68, 68, 0.4); }
         }
 
         .card h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            color: #00ffff;
+            font-size: 0.875em;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #94a3b8;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+        }
+
+        .card-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
         }
 
         .metric-value {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5em;
-            font-weight: 900;
-            margin: 15px 0;
-            text-shadow: 0 0 10px currentColor;
-            animation: valueGlow 3s ease-in-out infinite alternate;
+            font-size: 2.75em;
+            font-weight: 700;
+            margin: 20px 0 12px 0;
+            color: #ffffff;
+            letter-spacing: -1px;
+            line-height: 1;
         }
 
-        @keyframes valueGlow {
-            from { text-shadow: 0 0 5px currentColor; }
-            to { text-shadow: 0 0 15px currentColor, 0 0 25px currentColor; }
+        .metric-unit {
+            font-size: 0.4em;
+            font-weight: 500;
+            color: #94a3b8;
+            margin-left: 8px;
         }
 
         .metric-label {
