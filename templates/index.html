@@ -325,23 +325,43 @@
             font-size: 3em;
             font-weight: bold;
             position: relative;
-            background: conic-gradient(#2ecc71 var(--health-percent), rgba(255,255,255,0.1) var(--health-percent));
+            background: conic-gradient(#00ff00 var(--health-percent), rgba(255,0,0,0.3) var(--health-percent));
+            box-shadow: 
+                0 0 20px rgba(0, 255, 0, 0.5),
+                inset 0 0 20px rgba(0, 255, 0, 0.3);
+            animation: healthRotate 10s linear infinite;
+        }
+
+        @keyframes healthRotate {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
         }
 
         .health-inner {
             width: 160px;
             height: 160px;
             border-radius: 50%;
-            background: rgba(10, 14, 39, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            border: 2px solid #00ff00;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 0, 0.5),
+                inset 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+
+        .health-inner #healthValue {
+            font-family: 'Orbitron', sans-serif;
+            color: #00ff00;
+            text-shadow: 0 0 20px #00ff00;
         }
 
         .health-inner span {
             font-size: 0.3em;
-            color: #a0a0a0;
+            color: #00ffff;
+            letter-spacing: 2px;
         }
 
         .chart-container {
